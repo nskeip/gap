@@ -86,7 +86,6 @@
 **  The terms are sorted with respect to the exponent.  Note that none of the
 **  arithmetic functions need this, but it makes the equality test simpler.
 */
-#include <threads.h>
 
 #include "cyclotom.h"
 
@@ -633,10 +632,10 @@ static Obj Cyclotomic(UInt n, UInt m)
     UInt                              i, k;           // loop variables
     UInt                              nn;             // copy of n to factorize
     UInt                              p;              // prime factor
-    static thread_local UInt          lastN;          // remember last n, dont recompute
-    static thread_local UInt          phi;            // Euler phi(n)
-    static thread_local BOOL          isSqfree;       // is n squarefree?
-    static thread_local UInt          nrp;            // number of its prime factors
+    static _Thread_local UInt         lastN;          // remember last n, dont recompute
+    static _Thread_local UInt         phi;            // Euler phi(n)
+    static _Thread_local BOOL         isSqfree;       // is n squarefree?
+    static _Thread_local UInt         nrp;            // number of its prime factors
 
     // get a pointer to the cyclotomic and a copy of n to factor
     res = BASE_PTR_PLIST(ResultCyc);
